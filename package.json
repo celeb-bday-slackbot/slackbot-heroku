@@ -1,0 +1,14 @@
+{
+  "name": "slackbot-heroku",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/celeb-bday-slackbot/slackbot-heroku.git",
+  "author": "jadestern <prelasia@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "slack_token_path=./slack-token node app.js"
+  },
+  "dependencies": {
+    "botkit": "^0.6.16"
+  }
+}
