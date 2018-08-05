@@ -6,7 +6,7 @@
   "author": "jadestern <prelasia@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "slack_token_path=./slack-token node app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "botkit": "^0.6.16"
