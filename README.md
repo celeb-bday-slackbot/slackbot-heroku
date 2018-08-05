@@ -11,3 +11,7 @@ based on https://codelabs.developers.google.com/codelabs/cloud-slack-bot/index.h
 ```terminal
   slack_token_path=./slack-token node app.js
 ```
+6.1 script 명령어로 쳐도 된다.
+```terminal
+  yarn start
+```
