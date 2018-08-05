@@ -1,8 +1,8 @@
-var Botkit = require('botkit');
-var fs = require('fs'); // NEW: Add this require (for loading from files).
-var axios = require('axios');
+const Botkit = require('botkit');
+const fs = require('fs'); // NEW: Add this require (for loading from files).
+const axios = require('axios');
 
-var controller = Botkit.slackbot({ debug: false });
+const controller = Botkit.slackbot({ debug: false });
 
 // START: Load Slack token from file.
 if (process.env.slack_token_path) {
@@ -24,13 +24,13 @@ if (process.env.slack_token_path) {
 controller.hears(
 		['연예인', '오늘', '생일'],
 		['direct_message', 'direct_mention', 'mention'],
-		async function (bot, message) {
+		async (bot, message) => {
 			bot.reply(message, '크롤링 시작. 잠시만 기달');
 			const rawData = await axios('https://celeb-crawler-express.herokuapp.com/profiles');
-			if(rawData.data.status === '200'){
-				bot.reply(message, '크롤링 서버가 죽은듯?');
-			} else {
+			if(rawData.data.status === 200){
 				bot.reply(message, JSON.stringify(rawData.data.result));
+			} else {
+				bot.reply(message, '크롤링 서버가 죽은듯?');
 			}
 		});
 
