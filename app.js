@@ -27,8 +27,20 @@ controller.hears(
 		async (bot, message) => {
 			bot.reply(message, '크롤링 시작. 잠시만 기달');
 			const rawData = await axios('https://celeb-crawler-express.herokuapp.com/profiles');
+
 			if(rawData.data.status === 200){
-				bot.reply(message, JSON.stringify(rawData.data.result));
+				//bot.reply(message, JSON.stringify(rawData.data.result));
+				const massageViewObj = {"text" : "오늘생일인 연예인","attachments":[]};
+				for(let i = 0 ;i < 3; i++){
+					let obj = {
+							"title": rawData.data.result[i].name,
+							"thumb_url": rawData.data.result[i].thumbnail,
+							"color": "#3AA3E3",
+							"text":"직업 : "+rawData.data.result[i].job+" \n생일:"+rawData.data.result[i].birthdate       
+					};
+					massageViewObj.attachments.push(obj);
+				}
+				bot.reply(message, massageViewObj);
 			} else {
 				bot.reply(message, '크롤링 서버가 죽은듯?');
 			}
