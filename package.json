@@ -9,6 +9,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "botkit": "^0.6.16"
   }
 }
