@@ -32,7 +32,6 @@ controller.hears(
 			} else {
 				bot.reply(message, JSON.stringify(rawData.data.result));
 			}
-			// bot.reply(message, 'Meow. :smile_cat: 테스트 3');
 		});
 
 
