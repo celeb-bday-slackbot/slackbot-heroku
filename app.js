@@ -30,17 +30,24 @@ controller.hears(
 
 			if(rawData.data.status === 200){
 				//bot.reply(message, JSON.stringify(rawData.data.result));
-				const massageViewObj = {"text" : "오늘생일인 연예인","attachments":[]};
-				for(let i = 0 ;i < 3; i++){
-					let obj = {
-							"title": rawData.data.result[i].name,
-							"thumb_url": rawData.data.result[i].thumbnail,
-							"color": "#3AA3E3",
-							"text":"직업 : "+rawData.data.result[i].job+" \n생일:"+rawData.data.result[i].birthdate       
+				const messageDisplayCount = 3;
+				const toMessageViewData = (massageViewObj) => {
+					return{
+						'text': massageViewObj.title,
+						'attachments': massageViewObj.data.slice(0,messageDisplayCount).map((item) => {
+							return {
+								'title': item.name,
+								'thumb_url': item.thumbnail,
+								'color': '#3AAE3',
+								'text': `직업 : ${item.job} \n생일: ${item.birthdate}`
+							};
+						})
 					};
-					massageViewObj.attachments.push(obj);
-				}
-				bot.reply(message, massageViewObj);
+				};
+				bot.reply(message, toMessageViewData({
+					'title': '오늘 생일인 연예인',
+					'data': rawData.data.result
+				}));
 			} else {
 				bot.reply(message, '크롤링 서버가 죽은듯?');
 			}
