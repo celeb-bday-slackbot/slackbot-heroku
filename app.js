@@ -33,7 +33,7 @@ controller.hears(
 				bot.reply(message,
 					(() => {
 						return{
-							'text': '오늘 생일인 연예인',
+							'text': '오늘 생일인 여자 연예인',
 							'attachments': rawData.data.result.slice(0, messageDisplayCount).map((item) => {
 								return {
 									'title': item.name,
